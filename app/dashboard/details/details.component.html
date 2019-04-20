@@ -1,0 +1,68 @@
+<html>
+  <body>
+    <navbar></navbar>
+    <br><br>
+    <div class="container">
+        <div class="headSection">
+            <h2 class="text-center dashHeading"> Details Page</h2>
+          </div>
+        <div class="row" style="text-align:left" *ngIf="currentMeeting">
+          <div class="col-md-8">
+            <form #createMeetingForm="ngForm"  (ngSubmit)="editThisMeeting() ">
+              <div class="form-group">
+                <label> Title</label>
+                <input type="text" name="currentTitle" [(ngModel)]="currentMeeting.title" #title="ngModel" class="form-control" placeholder="Enter ticket title required"
+                  required>
+              </div>
+              <br>
+           <div class="form-group">
+                Meeting:<label>From</label>
+                <input type="text" name="sDate" [(ngModel)]="currentMeeting.fromDate"  #assignee="ngModel" class="form-control" placeholder="Ticket Assignee required"
+                  required>
+              </div>
+              <br>
+              <div class="form-group">
+                <label>To</label>
+                <input type="text" name="eDate" [(ngModel)]="currentMeeting.toDate " #status="ngModel" class="form-control"
+                  placeholder="Enter issue description" required>
+              </div>
+              <br>
+              <div class="form-group">
+                  <label>Agenda</label>
+                  <textarea name="agenda" [(ngModel)]="currentMeeting.agenda" class="form-control" rows="3"
+                    placeholder="Please enter Agenda" required>
+                </textarea>
+                </div>
+                <br>
+                <div class="form-group" >
+                  <label>Organizer:</label>
+                  <input type="text"id="organizer" name="organizer"  [(ngModel)]="currentMeeting.organizer" #parts="ngModel"
+                  class="form-control"  required autofocus>
+                </div>
+                <br>
+                <div class="form-group"  *ngIf="currentMeeting.participants.length>0" >
+                  <label>Participants:</label>
+                  <input type="text"id="participants" name="participants"  [(ngModel)]="currentMeeting.participants" #parts="ngModel"
+                  class="form-control"  required autofocus><br>Participants List:<span *ngFor="let part of currentMeeting.participants;let first=first;let last=last" >{{part}} {{ last?'':','}}</span>
+                </div>
+
+                <br>
+               <button  *ngIf="userType!==null && userType!==undefined && userType==='admin'" class="btn btn-info" [routerLink]="['/admin-dashboard']">back</button>      
+               <button  *ngIf="userType!==null && userType!==undefined && userType!=='admin'" class="btn btn-info" [routerLink]="['/user-dashboard']">back</button>      
+
+               &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <button type= "submit" class="btn btn-primary" *ngIf="userType!==null && userType!==undefined && userType==='admin'"[disabled]="!createMeetingForm.form.valid">Save</button>
+             &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<button type="button"  *ngIf="userType!==null && userType!==undefined && userType==='admin'" class="btn btn-danger"(click)="deleteMeeting()">Delete</button>      
+            </form>
+          </div>
+          </div>
+          </div>
+
+          <!--Footer Part-->
+<footer class="footer">
+    <div class="container text-center">
+      <span class="text-white">&copy;VTRACKER</span>
+      </div>
+      </footer>
+  </body>
+  </html>

@@ -1,0 +1,26 @@
+.selectBox{
+    display :flex;
+    justify-content:center;
+    overflow: hidden;
+    background-color:#ffffff;
+    border-radius:50px;
+    width:40px;
+}
+
+.navbar-collapse{
+    padding-left:170px;
+  }
+  
+  .drop{
+    margin-right:105px; 
+}
+
+
+.dropdown-menu{
+    background-color:skyblue;
+}
+
+
+ .navbar-brand{
+   z-index:1;
+ }

@@ -1,0 +1,118 @@
+<html>
+  <body>
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+
+  <a class="navbar-brand" href="/">VSCHEDULER</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item active">
+
+        <a class="nav-link" (click)="goToSignIn()">Sign-In</a>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+<div class="container-fluid fullSection">
+  <div class="row justify-content-center ">
+    <div class="col-12 col-sm-6">
+<form class="form-signin" #signUpForm="ngForm">
+
+     <h5 class="form-signin-heading">Register</h5>
+
+    <br>
+    <div class="form-group" [class.has-error]="fName.invalid &&fName.touched ">
+
+    <span>FirstName: </span>
+
+    <label for="inputFirstName" class="sr-only">FirstName</label>
+
+    <input type="text" name="firstName" id="inputFirstName" class="form-control control-label" [(ngModel)]="firstName" placeholder="FirstName" #fName="ngModel" required autofocus>
+    <div class="help-block alert alert-danger" *ngIf=" fName.errors?.required && fName.touched">FirstName is required</div> 
+ 
+  </div>
+    <br>
+    <div class="form-group" [class.has-error]="lName.invalid &&fName.touched ">
+     <span>LastName: </span>
+
+    <label for="inputLastName" class="sr-only">LastName</label>
+
+    <input type="text" name="lastName" id="inputLastName" class="form-control control-label" [(ngModel)]="lastName" #lName="ngModel" placeholder="LastName" required>
+    <div class="help-block alert alert-danger" *ngIf=" lName.errors?.required &&lName.touched">LastName is required</div> 
+
+  </div>
+    <br>
+    <div class="form-group" [class.has-error]="cMobile.invalid &&cMobile.touched ">
+
+    <span> Country Code &  Mobile Number:   
+    </span>
+    <br>
+    <select [(ngModel)]="statusD" name="statusD" class="form-control">
+      <option class="form-control" *ngFor="let x of countryCode" [selected]="x.code - x.countryName=='select'" [value]="x.id">{{x.code}}-{{x.countryName}}</option>
+    </select>        
+    <br>
+    <br>
+    <input type="number" name="mobile" id="inputMobile2" class="form-control" [(ngModel)]="mobile" #cMobile="ngModel" placeholder="Mobile" required>
+    <div class="help-block alert alert-danger" *ngIf=" cMobile.errors?.required &&cMobile.touched">Mobile Number is required</div> 
+
+    </div>
+    <br>
+   
+
+    <div class="form-group" [class.has-error]="cEmail.invalid &&cEmail.touched ">
+
+    <span>Email: </span>
+    
+    <label for="inputEmail" class="sr-only control-label">Email address</label>
+
+    <input type="email" name="email"id="inputEmail" class="form-control" [(ngModel)]="email" placeholder="Email address" #cEmail="ngModel" email required>
+    <div class="help-block alert alert-danger" *ngIf=" cEmail.errors?.required && cEmail.touched">Email is required</div> 
+    <div class="help-block alert alert-danger" *ngIf="cEmail.errors?.email && cEmail.touched">Email is invalid</div>  
+  </div>
+    <br>
+    <div class="form-group" [class.has-error]="cPassword.invalid &&cPassword.touched ">
+
+    <span>Password: </span>
+
+    <label for="inputPassword" class="sr-only control-label">Password</label>
+
+    <input type="password" name="password" id="inputPassword" class="form-control" [(ngModel)]="password" placeholder="Password" #cPassword="ngModel" required>
+    <div class="help-block alert alert-danger" *ngIf="cPassword.invalid && cPassword.touched">Atleast one uppercase letter, one lowercase letter, one number and one special character Required </div>  
+  
+  </div>    
+    <br>
+    <div class="form-group"  [class.has-error]="cRePassword.invalid &&cRePassword.touched ">
+        <span>Confirm Password: </span>
+        <label for="reinputPassword" class="sr-only control-label">Confirm Password</label>
+        <input type="password" name="repassword" id="reinputPassword" class="form-control" [(ngModel)]="repassword" placeholder="Password" #cRePassword="ngModel" required>
+        <div class="help-block alert alert-danger" *ngIf="cRePassword.touched && password!=repassword">Both password fields not same</div>  
+
+      </div>
+<br>
+
+
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!signUpForm.form.valid" (click)="signupFunction()">Sign Up</button>
+
+
+</form>
+</div>
+</div>
+</div>
+
+ </body>
+    </html>
